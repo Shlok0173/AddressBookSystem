@@ -73,10 +73,24 @@ public class AddressBook extends Contacts {
 			if (contact.get(i).getFirstNames().equalsIgnoreCase(firstName)) {
 				contact.remove(i);
 				addContact();
-				System.out.println("Successfully Edit data");
+				System.out.println(contact);
 			} else {
 				System.out.println("No data found in Address Book");
 			}
 		}
 	}
+	
+	
+	  public void contactDelete() {
+		  System.out.println("Enter first name for delete");
+		  String firstName=sc.nextLine();
+		  for(int i=0;i<contact.size();i++) {
+			  if(contact.get(i).getFirstNames().equals(firstName)) {
+				  contact.remove(i);
+				  System.out.println(contact);
+			  }else {
+				  System.out.println("No data found in Address Book");
+			  }
+		  }
+	  }
 }
