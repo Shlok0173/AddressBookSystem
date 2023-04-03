@@ -9,8 +9,10 @@ public class AddressBookMain {
     	  AddressBook addressbook = new AddressBook();
     	  Contacts contact=new Contacts();
     	  addressbook.addContact();
-    	  addressbook.displayContact();
+    	 // addressbook.displayContact();
     	  contact.toString();
+    	  addressbook.contactEdit();
+    	  addressbook.displayContact();
     	  
       }
 }
