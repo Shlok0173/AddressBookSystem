@@ -1,14 +1,31 @@
 package com.bridgelapz.addressbook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook extends Contacts {
 
 	static ArrayList<Contacts> contact = new ArrayList<Contacts>();
     Scanner sc = new Scanner(System.in);
         
-	public void addContact() {
+    public void addContact() {
+    	System.out.println("Enter the number of contact you want to enter");
+    	int number=sc.nextInt();
+    	for(int i=0;i<number;i++) {
+    		System.out.println("Enter the first name of person");
+    		String fname=sc.next();
+    		if(fname.equals(getFirstNames())){
+    		System.out.println("Enter the person alrady exist");
+    	}else {
+    		System.out.println("Enter the contact details");
+    		addContact();
+    	}
+    	}
+    		
+    }
+	public void writeContact() {
 		Contacts contacts = new Contacts();
 
 		System.out.println("Enter The FirstName");
@@ -47,7 +64,7 @@ public class AddressBook extends Contacts {
 
 	}
 
-	public void displayContact() {
+	public boolean displayContact() {
 		if (contact.isEmpty()) {
 			System.out.println("AddressBook Contact is empty");
 		}
@@ -62,9 +79,29 @@ public class AddressBook extends Contacts {
 			System.out.println(contact.getPhone());
 			System.out.println(contact.getEmail());
 		}
+		return false;
 	}
-
-	public void contactEdit() {
+        public void searchByName(String name) {
+        	List<Contacts>collect=contact.stream().filter(p->p.getFirstNames().equalsIgnoreCase(name)).collect(Collectors.toList());
+        	for(Contacts contact:collect) {
+        		System.out.println(collect);
+        	}
+        }
+        
+        public void searchByCity(String city) {
+        	List<Contacts>collect=contact.stream().filter(p->p.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+        	for(Contacts contact:collect) {
+        		System.out.println(contact);
+        	}
+        }
+        
+           public void searchByState(String state) {
+        	   List<Contacts>collect=contact.stream().filter(p->p.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+        	   for(Contacts contact:collect) {
+        		   System.out.println(contact);
+        	   }
+           }
+	    public void contactEdit() {
          
 		System.out.println("Enter first name for confirmation : ");
 		String firstName = sc.nextLine();
@@ -80,7 +117,7 @@ public class AddressBook extends Contacts {
 	}
 	
 	
-	  public void contactDelete() {
+	    public void contactDelete() {
 		  System.out.println("Enter first name for delete");
 		  String firstName=sc.nextLine();
 		  for(int i=0;i<contact.size();i++) {

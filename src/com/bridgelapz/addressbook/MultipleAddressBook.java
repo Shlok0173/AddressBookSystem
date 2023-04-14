@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.HashMap;
 
 public class MultipleAddressBook {
-
+  
 	 Map<String,AddressBook>addressBookMap=new HashMap<String,AddressBook>();
 	 
 	 public void addAddressbook() {
@@ -37,5 +37,56 @@ public class MultipleAddressBook {
 			  addressBookMap.get(addressbook).addContact();
 		  }
 	  }
+	  public void editContactInBook() {
+		  System.out.println("Enter Name of AddresBook exist edit");
+		  Scanner scanner=new Scanner(System.in);
+		  String editBookName=scanner.nextLine();
+		  if(addressBookMap.containsKey(editBookName)) {
+		  addressBookMap.get(editBookName);
+		  
+		  }else {
+			  System.out.println("AddressBook doesn't exist,please enter correct name");
+			//  editContactInBook();
+	  }
+		  
+	  }
+	  public void deleteAddressBook() {
+		  System.out.println("Enter Name of Address Book you want to delete");
+		  Scanner scanner=new Scanner(System.in);
+		  String bookName=scanner.next();
+		  if(addressBookMap.containsKey(bookName)){
+			  addressBookMap.remove(bookName);
+		  }else {
+			  System.out.println("AddressBook doesn't exist");
+			  deleteAddressBook();
+		  }
+	  }
+	  public void deleteAddressInBook() {
+		  Scanner scanner=new Scanner(System.in);
+		  String bookName=scanner.next();
+		  if(addressBookMap.containsKey(bookName)) {
+			  addressBookMap.get(bookName).contactDelete();
+		  }else {
+			  System.out.println("AddressBook doesn't exist,please enter correct name");
+			  deleteAddressInBook();
+		  }
+	  }
+	  public void printBook() {
+		  System.out.println("These are AddressBooks in program");
+		  for(Map.Entry<String ,AddressBook> entry :addressBookMap.entrySet()) {
+		  System.out.println(entry.getKey()+"[]");
+	  }
+	  }
+		  public void printContactsInBook() {
+			  for(Map.Entry<String, AddressBook>entry:addressBookMap.entrySet()) {
+			  System.out.println("The contact in the book of<"+entry.getKey());
+			  System.out.println(entry.getValue().displayContact());
+		  }
 	 }
+		//public void editContactInBook() {
+			// TODO Auto-generated method stub
+			
+		//}
+	
+}
 
