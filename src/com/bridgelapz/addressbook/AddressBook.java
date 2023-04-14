@@ -1,7 +1,9 @@
 package com.bridgelapz.addressbook;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AddressBook extends Contacts {
 
@@ -46,6 +48,26 @@ public class AddressBook extends Contacts {
 		contact.add(contacts);
 
 	}
+	 public void searchByName(String name) {
+     	List<Contacts>collect=contact.stream().filter(p->p.getFirstNames().equalsIgnoreCase(name)).collect(Collectors.toList());
+     	for(Contacts contact:collect) {
+     		System.out.println(collect);
+     	}
+     }
+     
+     public void searchByCity(String city) {
+     	List<Contacts>collect=contact.stream().filter(p->p.getCity().equalsIgnoreCase(city)).collect(Collectors.toList());
+     	for(Contacts contact:collect) {
+     		System.out.println(contact);
+     	}
+     }
+     
+        public void searchByState(String state) {
+     	   List<Contacts>collect=contact.stream().filter(p->p.getState().equalsIgnoreCase(state)).collect(Collectors.toList());
+     	   for(Contacts contact:collect) {
+     		   System.out.println(contact);
+     	   }
+        }
 
 	public void displayContact() {
 		if (contact.isEmpty()) {
@@ -89,6 +111,33 @@ public class AddressBook extends Contacts {
 				  System.out.println(contact);
 			  }else {
 				  System.out.println("No data found in Address Book");
+			  }
+		  }
+	  }
+	  
+	  public void viewByOptions() {
+		  Scanner scanner=new Scanner(System.in);
+		  while(true) {
+			  System.out.println("Enter \n 1.By name\n 2.By city\n 3.By state\n 4.for previous menu");
+			  int choice=sc.nextInt();
+			  switch(choice) {
+			  case 1:
+				  System.out.println("Enter the name");
+				  String name=sc.nextLine();
+				  searchByName(name);
+				  break;
+				  
+			  case 2:
+				  System.out.println("Enter the city");
+				  String city=sc.nextLine();
+				  searchByCity(city);
+				  break;
+				  
+			  case 3:
+				  System.out.println("Enter the state");
+				  String state=sc.nextLine();
+				  searchByState(state);
+				  break;
 			  }
 		  }
 	  }
