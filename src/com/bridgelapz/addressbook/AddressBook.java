@@ -78,6 +78,13 @@ public class AddressBook extends Contacts {
         	System.out.println("Contacts List"+count1);
         }
         
+        // sort Method Sorting the details
+        
+        public void sortByName() {
+        	List<Contacts> list=contact.stream().collect(Collectors.toList());
+        	list.stream().sorted((g1,g2)->((String)g1.getFirstNames()).compareTo(g2.getFirstNames()))
+        	.forEachOrdered(contact->System.out.pintln(contact.getFirstNames())+" "+contact.getLastNames());
+        }
 
 	public void displayContact() {
 		if (contact.isEmpty()) {
