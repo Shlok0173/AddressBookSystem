@@ -68,6 +68,16 @@ public class AddressBook extends Contacts {
      		   System.out.println(contact);
      	   }
         }
+        
+        public void countContactsByUsingCity(String cityName) {
+        	long count=0;
+        	long count1=contact.stream().filter(p->p.getCity().equalsIgnoreCase(cityName)).count();
+        	for(Contacts contact:contact) {
+        	count1=count1+count;
+        	}
+        	System.out.println("Contacts List"+count1);
+        }
+        
 
 	public void displayContact() {
 		if (contact.isEmpty()) {
