@@ -1,4 +1,4 @@
-package com.bridgelapz.addressbook;
+package AdvAddressBookSystem.AdvAddressBookSystem;
 
 public class Contacts {
 
